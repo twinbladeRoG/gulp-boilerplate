@@ -4,14 +4,13 @@ const sass = require('gulp-sass');
 const concat = require('gulp-concat');
 const babel = require('gulp-babel');
 const rename = require('gulp-rename');
-const util = require('gulp-util');
 const autoprefixer = require('gulp-autoprefixer');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 const browserSync = require('browser-sync').create();
 const clean = require('gulp-clean-css');
 const terser = require('gulp-terser');
-const log = util.log;
+const log = require('fancy-log');
 
 // Lint Task
 gulp.task('lint', () => {
