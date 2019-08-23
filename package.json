@@ -1,0 +1,33 @@
+{
+  "name": "gulp-boilerplate",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "scripts": {
+    "dev": "gulp",
+    "sass": "gulp sass",
+    "host": "lt --port 3000 --subdomain yourdomain"
+  },
+  "author": "Sohan",
+  "license": "MIT",
+  "description": "Automate front-end development using GulpJS",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "browser-sync": "^2.26.7",
+    "eslint": "^6.1.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.1.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^6.0.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-terser": "^1.2.0",
+    "gulp-util": "^3.0.8",
+    "localtunnel": "^1.9.2"
+  }
+}
