@@ -1,0 +1,9 @@
+$font-size: (
+  normal: 0.9rem,
+  small: 0.75rem,
+  big: 1.25rem
+);
+
+@function fontSize($size) {
+  @return map-get($font-size, $size);
+}
