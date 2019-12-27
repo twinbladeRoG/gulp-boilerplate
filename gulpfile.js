@@ -11,8 +11,11 @@ const browserSync = require('browser-sync').create();
 const clean = require('gulp-clean-css');
 const terser = require('gulp-terser');
 const log = require('fancy-log');
+const webpack = require('webpack-stream');
 
-// Lint Task
+/**
+ * ES Lint all JavaScripts files
+ */
 gulp.task('lint', () => {
 	log('Linting JS files ' + (new Date()).toString());
 
@@ -21,7 +24,12 @@ gulp.task('lint', () => {
 		.pipe(eslint.format());
 });
 
-// Compiling SCSS to CSS
+
+/**
+ * Converts all SCSS to CSS
+ * Minify the CSS
+ * Adds auto-prefix for browser support
+ */
 gulp.task('sass', () => {
 	log('Generating CSS files ' + (new Date()).toString());
 
@@ -48,7 +56,10 @@ gulp.task('sass', () => {
 		.pipe(gulp.dest('dist/css'));
 });
 
-// Concatenate & Minify JS
+
+/**
+ * Bundle all Javascript to one JS file
+ */
 gulp.task('scripts', () => {
 	return gulp.src('js/*.js')
 		.pipe(plumber({
@@ -71,10 +82,21 @@ gulp.task('scripts', () => {
 		.pipe(gulp.dest('dist/js'));
 });
 
-// Watch Files For Changes
+/**
+ * Coverts all ES6 syntax to browser compatible using Webpack
+ */
+gulp.task('webpack', () => {
+	return gulp.src('js/')
+		.pipe(webpack(require('./webpack.config.js')))
+		.pipe(gulp.dest('dist/js'));
+});
+
+/**
+ * Gulp task to watch for file changes
+ */
 gulp.task('watch', () => {
 	log('Watching js files for modifications');
-	gulp.watch('js/*.js', gulp.series('lint', 'scripts')).on('change', browserSync.reload);
+	gulp.watch('js/*.js', gulp.series('lint', 'webpack')).on('change', browserSync.reload);
 	log('Watching scss files for modifications');
 	gulp.watch(['scss/**/*.scss'], gulp.series('sass')).on('change', browserSync.reload);
 	log('Watching html files for modifications');
