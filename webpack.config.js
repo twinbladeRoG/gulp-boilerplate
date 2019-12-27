@@ -3,7 +3,7 @@ const outputDir = path.resolve(__dirname, 'dist/js');
 
 module.exports = {
 	mode: 'development',
-	entry: path.resolve(__dirname, 'js/'),
+	entry: path.resolve(__dirname, 'src/js/'),
 	output: {
 		path: outputDir,
 		filename: 'bundle.js'

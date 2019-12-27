@@ -17,8 +17,20 @@ const webpack = require('webpack-stream');
  * Copy HTML to dist
  */
 gulp.task('html', () => {
-	return gulp.src('*.html')
+	return gulp.src('src/*.html')
 		.pipe(gulp.dest('dist/'));
+});
+
+/**
+ * Copy assets to dist
+ */
+gulp.task('assets', () => {
+	return gulp.src([
+		'src/assets/**/*.ico',
+		'src/assets/**/*.png',
+		'src/assets/**/*.jpeg',
+		'src/assets/**/*.svg'
+	]).pipe(gulp.dest('dist/assets/'));
 });
 
 /**
@@ -29,7 +41,7 @@ gulp.task('html', () => {
 gulp.task('sass', () => {
 	log('Generating CSS files ' + (new Date()).toString());
 
-	return gulp.src('scss/*.scss')
+	return gulp.src('src/scss/*.scss')
 		.pipe(plumber({
 			errorHandler: function (err) {
 				notify.onError({
@@ -58,7 +70,7 @@ gulp.task('sass', () => {
 gulp.task('lint', () => {
 	log('Linting JS files ' + (new Date()).toString());
 
-	return gulp.src('js/*.js')
+	return gulp.src('src/js/*.js')
 		.pipe(eslint())
 		.pipe(eslint.format());
 });
@@ -67,7 +79,7 @@ gulp.task('lint', () => {
  * Bundle all Javascript to one JS file
  */
 gulp.task('scripts', () => {
-	return gulp.src('js/*.js')
+	return gulp.src('src/js/*.js')
 		.pipe(plumber({
 			errorHandler: function (err) {
 				notify.onError({
@@ -92,7 +104,7 @@ gulp.task('scripts', () => {
  * Coverts all ES6 syntax to browser compatible using Webpack
  */
 gulp.task('webpack', () => {
-	return gulp.src('js/')
+	return gulp.src('src/js/')
 		.pipe(webpack(require('./webpack.config.js')))
 		.pipe(gulp.dest('dist/js'));
 });
@@ -102,11 +114,16 @@ gulp.task('webpack', () => {
  */
 gulp.task('watch', () => {
 	log('Watching js files for modifications');
-	gulp.watch('js/*.js', gulp.series('lint', 'webpack')).on('change', browserSync.reload);
+	gulp.watch('src/js/*.js', gulp.series('lint', 'webpack')).on('change', browserSync.reload);
+
 	log('Watching scss files for modifications');
-	gulp.watch(['scss/**/*.scss'], gulp.series('sass')).on('change', browserSync.reload);
+	gulp.watch(['src/scss/**/*.scss'], gulp.series('sass')).on('change', browserSync.reload);
+
 	log('Watching html files for modifications');
-	gulp.watch('*.html', gulp.series('html')).on('change', browserSync.reload);
+	gulp.watch('src/*.html', gulp.series('html')).on('change', browserSync.reload);
+
+	log('Watching assets for modifications');
+	gulp.watch('src/assets/', gulp.series('assets')).on('change', browserSync.reload);
 
 	browserSync.init({
 		server: './dist/',
