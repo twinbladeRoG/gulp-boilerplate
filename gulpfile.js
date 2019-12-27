@@ -14,16 +14,12 @@ const log = require('fancy-log');
 const webpack = require('webpack-stream');
 
 /**
- * ES Lint all JavaScripts files
+ * Copy HTML to dist
  */
-gulp.task('lint', () => {
-	log('Linting JS files ' + (new Date()).toString());
-
-	return gulp.src('js/*.js')
-		.pipe(eslint())
-		.pipe(eslint.format());
+gulp.task('html', () => {
+	return gulp.src('*.html')
+		.pipe(gulp.dest('dist/'));
 });
-
 
 /**
  * Converts all SCSS to CSS
@@ -56,6 +52,16 @@ gulp.task('sass', () => {
 		.pipe(gulp.dest('dist/css'));
 });
 
+/**
+ * ES Lint all JavaScripts files
+ */
+gulp.task('lint', () => {
+	log('Linting JS files ' + (new Date()).toString());
+
+	return gulp.src('js/*.js')
+		.pipe(eslint())
+		.pipe(eslint.format());
+});
 
 /**
  * Bundle all Javascript to one JS file
@@ -100,13 +106,15 @@ gulp.task('watch', () => {
 	log('Watching scss files for modifications');
 	gulp.watch(['scss/**/*.scss'], gulp.series('sass')).on('change', browserSync.reload);
 	log('Watching html files for modifications');
-	gulp.watch('*.html').on('change', browserSync.reload);
+	gulp.watch('*.html', gulp.series('html')).on('change', browserSync.reload);
 
 	browserSync.init({
-		server: './',
+		server: './dist/',
 		open: false
 	});
 });
 
-// Default Gulp task
+/**
+ * Default gulp task
+ */
 gulp.task('default', gulp.series('watch'));
