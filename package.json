@@ -2,7 +2,6 @@
   "name": "gulp-boilerplate",
   "version": "1.0.0",
   "main": "gulpfile.js",
-  "dependencies": {},
   "scripts": {
     "dev": "gulp",
     "sass": "gulp sass",
@@ -11,6 +10,10 @@
   "author": "Sohan",
   "license": "MIT",
   "description": "Automate front-end development using GulpJS",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
