@@ -5,9 +5,8 @@
   "scripts": {
     "watch:dev": "gulp",
     "watch:production": "gulp --production",
-    "sass": "gulp sass",
-    "webpack": "gulp webpack",
-    "host": "lt --port 3000 --subdomain yourdomain"
+    "compile:sass": "gulp sass",
+    "compile:js": "gulp webpack"
   },
   "author": "Sohan",
   "license": "MIT",
@@ -37,7 +36,6 @@
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
     "gulp-terser": "^1.2.0",
-    "localtunnel": "^1.9.2",
     "npm": "^6.13.4",
     "source-map-loader": "^0.2.4",
     "terser-webpack-plugin": "^2.3.1",

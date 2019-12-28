@@ -1,36 +1,41 @@
 # Gulp Boilerplate
 
-### Installation
+A starter pack for developing static web application using Gulp and Webpack.
+
+## Installation
 
 Requires [Node.js](https://nodejs.org/) v8+ to run.
 
 Install global dependencies
 
 ```node
-npm i -g gulp localtunnel
+npm i -g gulp
 ```
-Install the dependencies and devDependencies and start the server.
+Install the dependencies and devDependencies.
 
 ```npm
 npm i
 ```
 
-### Starting Dev Server
+# Starting Server
 
 Running dev server
 
 ```sh
-npm run dev
+npm run watch:dev
 ```
+Running production server
 
+```sh
+npm run watch:production
+```
 Compile Sass
 
 ```sh
-npm run sass
+npm run compile:sass
 ```
-
-Localtunnel Host
+Compile JavaScript
 
 ```sh
-npm run host
+npm run compile:js
 ```
