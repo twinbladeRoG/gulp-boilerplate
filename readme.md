@@ -3,7 +3,7 @@
 A starter pack for developing static web application using Gulp and Webpack.
 
 ## Installation
-
+---
 Requires [Node.js](https://nodejs.org/) v8+ to run.
 
 Install global dependencies
@@ -17,7 +17,8 @@ Install the dependencies and devDependencies.
 npm i
 ```
 
-# Starting Server
+## Starting Server
+---
 
 Running dev server
 
