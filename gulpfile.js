@@ -133,6 +133,16 @@ gulp.task('webpack', () => {
 });
 
 /**
+ * Gulp task to reload browser
+ */
+gulp.task('reload', (done) => {
+	browserSync.reload();
+	done();
+});
+
+
+
+/**
  * Gulp task to watch for file changes
  */
 gulp.task('watch', () => {
@@ -143,16 +153,16 @@ gulp.task('watch', () => {
 	});
 
 	log('Watching js files for modifications');
-	gulp.watch('src/js/*.js', gulp.series('lint', 'webpack')).on('change', browserSync.reload);
+	gulp.watch('src/js/*.js', gulp.series('lint', 'webpack', 'reload'));
 
 	log('Watching scss files for modifications');
-	gulp.watch(['src/scss/**/*.scss'], gulp.series('sass')).on('change', browserSync.reload);
+	gulp.watch(['src/scss/**/*.scss'], gulp.series('sass', 'reload'));
 
 	log('Watching html files for modifications');
-	gulp.watch('src/*.html', gulp.series('html')).on('change', browserSync.reload);
+	gulp.watch('src/*.html', gulp.series('html', 'reload'));
 
 	log('Watching assets for modifications');
-	gulp.watch('src/assets/', gulp.series('assets')).on('change', browserSync.reload);
+	gulp.watch('src/assets/', gulp.series('assets', 'reload'));
 });
 
 /**

@@ -7,3 +7,19 @@ body {
   color: color(black);
   margin: 0px;
 }
+
+.glow {
+  animation-name: glow;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+.btn-pink {
+  background-color: #EC407A;
+}
+
+@keyframes glow {
+  0% { opacity: 0.1; }
+  50% { opacity: 1; }
+  100% { opacity: 0.1; }
+}

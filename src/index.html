@@ -14,12 +14,12 @@
   <meta name="keywords" content="t" />
   <meta name="author" content="Sohan Dutta" />
 
-  <meta property="og:url"           content="" />
-  <meta property="og:type"          content="" />
-  <meta property="og:title"         content="" />
-  <meta property="og:description"   content="" />
-  <meta property="og:image"         content="" />
-  <meta property="og:author"        content="" />
+  <meta property="og:url" content="" />
+  <meta property="og:type" content="" />
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="" />
+  <meta property="og:author" content="" />
 
   <meta name="theme-color" content="#000">
   <meta name="msapplication-navbutton-color" content="#000">
@@ -33,20 +33,88 @@
 </head>
 
 <body>
-	<nav>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      <img src="/assets/js.png" alt="" height="30">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-	</nav>
-
-	<main>
-    <div class="jumbotron">
-      <h1 class="display-4">Knowledge is Power</h1>
-      <button type="button" class="btn btn-primary">Invoke</button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
     </div>
-	</main>
+  </nav>
 
-	<footer>
+  <main>
+    <div class="jumbotron">
+      <h1 class="display-4">Knowledge is <b class="glow">Power</b></h1>
+      <button type="button" id="quas" class="btn btn-pink text-white">Quas</button>
+      <button type="button" id="wex" class="btn btn-primary">Wex</button>
+      <button type="button" id="exort" class="btn btn-warning text-white">Exort</button>
 
-	</footer>
+      <p id="combination"></p>
+
+      <button type="button" id="invoke" class="btn btn-dark text-white">Invoker</button>
+
+      <p id="spell"></p>
+    </div>
+
+    <div class="card-deck mx-4">
+      <div class="card border-dark mb-3">
+        <div class="card-header">Header</div>
+        <div class="card-body text-dark">
+          <h5 class="card-title">Dark card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+      <div class="card border-dark mb-3">
+        <div class="card-header">Header</div>
+        <div class="card-body text-dark">
+          <h5 class="card-title">Dark card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+      <div class="card border-dark mb-3">
+        <div class="card-header">Header</div>
+        <div class="card-body text-dark">
+          <h5 class="card-title">Dark card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+
+  </footer>
 
   <!-- Scripts -->
   <script src="js/bundle.js"></script>

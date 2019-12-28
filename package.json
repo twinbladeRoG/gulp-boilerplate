@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "gulpfile.js",
   "scripts": {
-    "dev": "gulp",
+    "watch:dev": "gulp",
+    "watch:production": "gulp --production",
     "sass": "gulp sass",
+    "webpack": "gulp webpack",
     "host": "lt --port 3000 --subdomain yourdomain"
   },
   "author": "Sohan",
@@ -12,7 +14,8 @@
   "description": "Automate front-end development using GulpJS",
   "dependencies": {
     "bootstrap": "^4.4.1",
-    "jquery": "^3.4.1"
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.0"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
