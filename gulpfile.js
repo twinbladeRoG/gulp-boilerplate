@@ -12,11 +12,30 @@ const clean = require('gulp-clean-css');
 const terser = require('gulp-terser');
 const log = require('fancy-log');
 const webpack = require('webpack-stream');
+const del = require('del');
+const { argv } = require('yargs');
+const chalk = require('chalk');
+
+process.env.NODE_ENV = argv.production ? 'production' : 'development';
+log(`Running in ${chalk.bold.green(process.env.NODE_ENV)} mode`);
+
+/**
+ * Delete all files in dist
+ */
+gulp.task('clean', () => {
+	log('Cleaning files in dist ' + (new Date()).toString());
+	return new Promise(resolve => {
+		del.sync('./dist');
+		resolve();
+	});
+});
 
 /**
  * Copy HTML to dist
  */
 gulp.task('html', () => {
+	log('Copying HTML files ' + (new Date()).toString());
+
 	return gulp.src('src/*.html')
 		.pipe(gulp.dest('dist/'));
 });
@@ -25,6 +44,8 @@ gulp.task('html', () => {
  * Copy assets to dist
  */
 gulp.task('assets', () => {
+	log('Copying assets files ' + (new Date()).toString());
+
 	return gulp.src([
 		'src/assets/**/*.ico',
 		'src/assets/**/*.png',
@@ -104,6 +125,8 @@ gulp.task('scripts', () => {
  * Coverts all ES6 syntax to browser compatible using Webpack
  */
 gulp.task('webpack', () => {
+	log('Compile JS files ' + (new Date()).toString());
+
 	return gulp.src('src/js/')
 		.pipe(webpack(require('./webpack.config.js')))
 		.pipe(gulp.dest('dist/js'));
@@ -113,6 +136,12 @@ gulp.task('webpack', () => {
  * Gulp task to watch for file changes
  */
 gulp.task('watch', () => {
+	browserSync.init({
+		server: './dist/',
+		port: 8000,
+		open: false
+	});
+
 	log('Watching js files for modifications');
 	gulp.watch('src/js/*.js', gulp.series('lint', 'webpack')).on('change', browserSync.reload);
 
@@ -124,14 +153,11 @@ gulp.task('watch', () => {
 
 	log('Watching assets for modifications');
 	gulp.watch('src/assets/', gulp.series('assets')).on('change', browserSync.reload);
-
-	browserSync.init({
-		server: './dist/',
-		open: false
-	});
 });
 
 /**
  * Default gulp task
  */
-gulp.task('default', gulp.series('watch'));
+gulp.task('default', gulp.series(
+	'clean', 'html', 'sass', 'assets', 'webpack', 'lint', 'watch'
+));
